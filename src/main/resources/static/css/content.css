@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.mWraper {
+	height:100%;
+}
+
+.content{
+	position:absolute;
+	 top: 60px;
+    right: 0;
+	background:"f8f9fa";
+	width: calc(100% - 250px);
+}
+
+button{
+	 max-height: 40px;
+	 cursor:pointer;
+}
+
+.search-icon-box{
+	background:red;
+}
+
+.center{
+	    text-align: center;
+}
+.modal{
+	z-index:2000;
+}
+#navbarSupportedContent{
+	color:"white";
+}

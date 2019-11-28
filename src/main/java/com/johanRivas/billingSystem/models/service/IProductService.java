@@ -10,6 +10,8 @@ public interface IProductService {
 
 	public Product getProductById(long id);
 
+	public List<Product> findProductByTerm(String term);
+
 	public void addProduct(Product product);
 
 	public void deleteProduct(Long id);

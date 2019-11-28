@@ -1,10 +1,10 @@
-INSERT INTO products (name, price, created_at, stock, iva) VALUES('Panasonic Pantalla LCD', 259990, NOW(),2,6566);
-INSERT INTO products (name, price, created_at, stock, iva) VALUES('Sony Camara digital DSC-W320B', 123490, NOW(),2,6566);
+INSERT INTO products (name, price, created_at, stock, iva) VALUES('Panasonic Pantalla LCD', 259990, NOW(),2,4);
+INSERT INTO products (name, price, created_at, stock, iva) VALUES('Sony Camara digital DSC-W320B', 123490, NOW(),2,5);
 INSERT INTO products (name, price, created_at, stock, iva) VALUES('Apple iPod shuffle', 1499990, NOW(),2,6566);
 INSERT INTO products (name, price, created_at, stock, iva) VALUES('Sony Notebook Z110', 37990, NOW(),2,6566);
-INSERT INTO products (name, price, created_at, stock, iva) VALUES('Hewlett Packard Multifuncional F2280', 69990, NOW(),2,6566);
-INSERT INTO products (name, price, created_at, stock, iva) VALUES('Bianchi Bicicleta Aro 26', 69990, NOW(),2,6566);
-INSERT INTO products (name, price, created_at, stock, iva) VALUES('Mica Comoda 5 Cajones', 299990, NOW(),2,6566);
+INSERT INTO products (name, price, created_at, stock, iva) VALUES('Hewlett Packard Multifuncional F2280', 69990, NOW(),2,3);
+INSERT INTO products (name, price, created_at, stock, iva) VALUES('Bianchi Bicicleta Aro 26', 69990, NOW(),2,4);
+INSERT INTO products (name, price, created_at, stock, iva) VALUES('Mica Comoda 5 Cajones', 299990, NOW(),2,5);
 
 INSERT INTO `users` (username, password, enable) VALUES ('andres','$2a$10$O9wxmH/AeyZZzIS09Wp8YOEMvFnbRVJ8B4dmAMVSGloR62lj.yqXG',1);
 INSERT INTO `users` (username, password, enable) VALUES ('admin','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
@@ -14,11 +14,13 @@ INSERT INTO `authorities` (user_id, authority) VALUES (2,'ROLE_ADMIN');
 INSERT INTO `authorities` (user_id, authority) VALUES (2,'ROLE_USER');
 
 INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Pedro', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
-INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Pedro', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
-INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Pedro', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
-INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Pedro', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
-INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Pedro', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
-INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Pedro', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
+INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('James', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
+INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Richard', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
+INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Janie', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
+INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Linus', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
+INSERT INTO clients (name, lastname, direction, phone, email, identification, created_at) VALUES('Johnny', 'Perez', 'fffffffff','2323223222','juan@gmail.com','23323333223',NOW());
+
+
 
 INSERT INTO invoices (description, observation, client_id, created_at) VALUES('Factura equipos de oficina', null, 1, NOW());
 INSERT INTO invoice_items (quatity, invoice_id, product_id) VALUES(1, 1, 1);

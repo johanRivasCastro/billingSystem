@@ -19,14 +19,14 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.johanRivas.billingSystem.models.entity.Product;
-import com.johanRivas.billingSystem.models.service.ProductServiceImpl;
+import com.johanRivas.billingSystem.models.service.IProductService;
 
 @Controller
 @SessionAttributes("product")
 public class ProductController {
 
 	@Autowired
-	private ProductServiceImpl productService;
+	private IProductService productService;
 	protected final Log logger = LogFactory.getLog(this.getClass());
 
 	@RequestMapping(value = { "/", "/products" }, method = RequestMethod.GET)

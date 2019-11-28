@@ -34,4 +34,9 @@ public class ProductServiceImpl implements IProductService {
 		productDao.deleteById(id);
 	}
 
+	@Override
+	public List<Product> findProductByTerm(String term) {
+		return productDao.findByName(term);
+	}
+
 }

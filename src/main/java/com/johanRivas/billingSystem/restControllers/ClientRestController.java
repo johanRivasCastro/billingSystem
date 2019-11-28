@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.johanRivas.billingSystem.models.entity.Client;
-import com.johanRivas.billingSystem.models.service.ClientServiceImpl;
+import com.johanRivas.billingSystem.models.service.IClientService;
 
 @RestController
 public class ClientRestController {
 
 	@Autowired
-	private ClientServiceImpl clientService;
+	private IClientService clientService;
 
 	@GetMapping(value = { "/rest/clients" })
 	public List<Client> clients() {
@@ -25,4 +25,10 @@ public class ClientRestController {
 	public Client client(@PathVariable("id") Long id) {
 		return clientService.getClientById(id);
 	}
+
+	@GetMapping("/rest/clientsByTerm/{term}")
+	public List<Client> clientsByTerm(@PathVariable("term") String term) {
+		return clientService.findByTerm(term);
+	}
+
 }

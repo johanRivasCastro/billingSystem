@@ -13,4 +13,6 @@ public interface IClientService {
 	public void addClient(Client client);
 
 	public void deleteClient(Long id);
+
+	public List<Client> findByTerm(String term);
 }

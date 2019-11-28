@@ -26,7 +26,7 @@ a:focus {
     transition: all 0.3s;
 }
 
-.navbar {
+.generalNav {
 	 position: fixed;
     padding: 15px 10px;
     background: #123C69;

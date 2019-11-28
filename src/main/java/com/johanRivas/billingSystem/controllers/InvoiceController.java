@@ -19,7 +19,7 @@ public class InvoiceController {
 
 	@GetMapping("/invoices")
 	public String list(Model model) {
-		model.addAttribute("invoie", new Invoice());
+		model.addAttribute("invoice", new Invoice());
 		return "invoice/listInvoices";
 	}
 

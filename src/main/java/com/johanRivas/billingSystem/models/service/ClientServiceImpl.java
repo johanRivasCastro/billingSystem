@@ -37,4 +37,9 @@ public class ClientServiceImpl implements IClientService {
 		clientDao.deleteById(id);
 	}
 
+	@Override
+	public List<Client> findByTerm(String term) {
+		return clientDao.findByTerm(term);
+	}
+
 }

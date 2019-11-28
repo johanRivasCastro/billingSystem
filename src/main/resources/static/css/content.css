@@ -6,7 +6,7 @@
 
 .content{
 	position:absolute;
-	 top: 60px;
+	top: 60px;
     right: 0;
 	background:"f8f9fa";
 	width: calc(100% - 250px);
@@ -30,3 +30,28 @@ button{
 #navbarSupportedContent{
 	color:"white";
 }
+
+.invoiceHeader{
+	 background:  #123C69;
+	 color:white; 
+}
+
+.invoiceHeader nav{
+	padding: 15px 6%;
+}
+
+.header-create-invoice{
+	background:  #123C69;
+	color:white;
+}
+
+.create-invoice-card, .details-invoice-card{
+	border: 2px solid #123C69;
+}
+
+
+
+
+
+
+

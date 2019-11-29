@@ -13,4 +13,5 @@ public interface IClientDao extends JpaRepository<Client, Long> {
 
 	@Query("select c from Client c where c.name like %?1%")
 	public List<Client> findByTerm(String term);
+
 }

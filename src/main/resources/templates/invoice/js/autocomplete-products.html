@@ -27,26 +27,26 @@
 					});
 				},
 				select : function(event, ui) {
-					//$("#buscar_producto").val(ui.item.label);
+					
+					var price = Number(ui.item.price);
+					var itbis = price * (Number(ui.item.iva) / 100);	
 					
 					if(itemsHelper.hasProducto(ui.item.value)){
-						itemsHelper.incrementaCantidad(ui.item.value, ui.item.price);
+						itemsHelper.incrementaCantidad(ui.item.value, ui.item.price, itbis);
 						return false;
 					}
 					
 					var linea = $("#plantillaItemsFactura").html();
 					
-					var itbis = Number(ui.item.price) * (Number(ui.item.iva) / 100);
-					
-					
+								
 					linea = linea.replace(/{ID}/g, ui.item.value);
 					linea = linea.replace(/{NOMBRE}/g, ui.item.label);
 					linea = linea.replace(/{ITBIS}/g,itbis);
-					linea = linea.replace(/{PRECIO}/g, ui.item.price);
+					linea = linea.replace(/{PRECIO}/g, ui.item.price + itbis);
 					
 					
 					$("#cargarItemProductos tbody").append(linea);
-					itemsHelper.calcularImporte(ui.item.value, ui.item.price, 1);
+					itemsHelper.calcularImporte(ui.item.value, ui.item.price, 1, itbis);
 
 					return false;
 				}
@@ -74,6 +74,7 @@
 				select : function(event, ui) {
 					$("#search-client").val(ui.item.label);
 					$("#invoice-client").html(ui.item.label);
+					$("#client-id").val(ui.item.value);
 					return false;
 				}
 			});
@@ -86,8 +87,9 @@
 		});
 		
 		var itemsHelper = {
-			calcularImporte: function(id, precio, cantidad){
-				$("#total_importe_" + id).html(parseInt(precio) * parseInt(cantidad));
+			calcularImporte: function(id, precio, cantidad, itbis){
+				$("#total_importe_" + id).html(parseInt(precio) * parseInt(cantidad) + (itbis * cantidad));
+				$("#itbis_" + id).html(itbis * cantidad);
 				this.calcularGranTotal();
 			},
 			hasProducto: function(id){
@@ -99,13 +101,12 @@
 						resultado = true;
 					}
 				});
-				
 				return resultado;
 			},
-			incrementaCantidad: function(id, precio){
+			incrementaCantidad: function(id, precio, itbis){
 				var cantidad = $("#cantidad_" + id).val() ? parseInt($("#cantidad_" + id).val()) : 0;
 				$("#cantidad_" + id).val(++cantidad);
-				this.calcularImporte(id, precio, cantidad);
+				this.calcularImporte(id, precio, cantidad, itbis);
 			},
 			eliminarLineaFactura: function(id){
 				$("#row_" + id).remove();

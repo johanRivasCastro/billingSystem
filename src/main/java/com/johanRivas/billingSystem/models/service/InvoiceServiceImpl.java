@@ -9,14 +9,14 @@ import com.johanRivas.billingSystem.models.dao.IInvoiceDao;
 import com.johanRivas.billingSystem.models.entity.Invoice;
 
 @Service
-public class InvoiceServiceImpl implements IInvoice {
+public class InvoiceServiceImpl implements IInvoiceService {
 
 	@Autowired
 	private IInvoiceDao invoiceDao;
 
 	@Override
-	public void addInvoice(Invoice client) {
-		invoiceDao.save(client);
+	public void addInvoice(Invoice invoice) {
+		invoiceDao.save(invoice);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class InvoiceServiceImpl implements IInvoice {
 	@Override
 	public List<Invoice> fetchdWithClientWhithItemInvoiceWithProduct() {
 
-		return invoiceDao.fetchdWithClientWhithItemInvoiceWithProduct();
+		return invoiceDao.findAll();
 	}
 
 }

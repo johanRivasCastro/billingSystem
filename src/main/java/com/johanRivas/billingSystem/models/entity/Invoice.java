@@ -22,7 +22,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlTransient;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "invoices")
@@ -43,13 +44,16 @@ public class Invoice implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "client_id")
-	@JsonBackReference
+//	@JsonBackReference
+	@JsonManagedReference
 	private Client client;
 
-//	@ManyToOne
-//	@JoinColumn(name = "user_id")
-//	private User user;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	@JsonManagedReference
+	private User user;
 
+//	@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@id")
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "invoice_id")
 	private List<InvoiceItem> items;
@@ -114,6 +118,14 @@ public class Invoice implements Serializable {
 
 	public void addInvoiceItem(InvoiceItem item) {
 		this.items.add(item);
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Double getTotal() {

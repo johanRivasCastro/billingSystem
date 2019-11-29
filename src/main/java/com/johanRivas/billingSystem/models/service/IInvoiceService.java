@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.johanRivas.billingSystem.models.entity.Invoice;
 
-public interface IInvoice {
+public interface IInvoiceService {
 
 	public List<Invoice> getInvoices();
 

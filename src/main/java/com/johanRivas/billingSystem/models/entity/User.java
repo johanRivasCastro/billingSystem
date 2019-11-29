@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -36,8 +38,9 @@ public class User implements Serializable {
 	@JoinColumn(name = "user_id")
 	private List<Role> Roles;
 
-//	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//	private List<Invoice> invoices;
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonBackReference
+	private List<Invoice> invoices;
 
 	public Long getId() {
 		return id;

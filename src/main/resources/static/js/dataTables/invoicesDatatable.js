@@ -1,24 +1,16 @@
 $(document).ready( function () {
 	 var table = $('#invoicesTable').DataTable({
-		 
-//		 <th>Id</th>
-//			<th>Descripcion</th>
-//			<th>Fecha</th>
-//			<th>Vendedor</th>
-//			<th>Total</th>
-//			<th>Actions</th>
-			 
-			"sAjaxSource": "/rest/clients",
+					
+			"sAjaxSource": "/rest/invoices",
 			"sAjaxDataProp": "",
 			"order": [[ 0, "asc" ]],
 			"aoColumns": [
 			      { "mData": "id"},
 			      { "mData": "description" },
-		          { "mData": "lastname" },
-				  { "mData": "email" },
-				  { "mData": "direction" },
-				  { "mData": "identification" },
-				  { "mData": "phone" },
+		          { "mData": "client.name" },
+				  { "mData": "createdAt" },
+				  { "mData": "user.username" },
+				  { "mData": "total" },
 				  { mRender: function (data, type, row) {
 		                return '<button  class="text-warning" id="'+row.id+'"><span><i class="fas fa-pen"></i></span></button> <button  class="text-danger" id="'+row.id+'"><span><i class="fas fa-trash"></i></span></button>'
 		              },

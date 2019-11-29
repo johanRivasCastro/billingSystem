@@ -1,7 +1,7 @@
 INSERT INTO products (name, price, created_at, stock, iva) VALUES('Panasonic Pantalla LCD', 259990, NOW(),2,4);
 INSERT INTO products (name, price, created_at, stock, iva) VALUES('Sony Camara digital DSC-W320B', 123490, NOW(),2,5);
-INSERT INTO products (name, price, created_at, stock, iva) VALUES('Apple iPod shuffle', 1499990, NOW(),2,6566);
-INSERT INTO products (name, price, created_at, stock, iva) VALUES('Sony Notebook Z110', 37990, NOW(),2,6566);
+INSERT INTO products (name, price, created_at, stock, iva) VALUES('Apple iPod shuffle', 1499990, NOW(),2,3);
+INSERT INTO products (name, price, created_at, stock, iva) VALUES('Sony Notebook Z110', 37990, NOW(),2,2);
 INSERT INTO products (name, price, created_at, stock, iva) VALUES('Hewlett Packard Multifuncional F2280', 69990, NOW(),2,3);
 INSERT INTO products (name, price, created_at, stock, iva) VALUES('Bianchi Bicicleta Aro 26', 69990, NOW(),2,4);
 INSERT INTO products (name, price, created_at, stock, iva) VALUES('Mica Comoda 5 Cajones', 299990, NOW(),2,5);
@@ -22,13 +22,13 @@ INSERT INTO clients (name, lastname, direction, phone, email, identification, cr
 
 
 
-INSERT INTO invoices (description, observation, client_id, created_at) VALUES('Factura equipos de oficina', null, 1, NOW());
+INSERT INTO invoices (description, observation, client_id, created_at, user_id) VALUES('Factura equipos de oficina', null, 1, NOW(),1);
 INSERT INTO invoice_items (quatity, invoice_id, product_id) VALUES(1, 1, 1);
 INSERT INTO invoice_items (quatity, invoice_id, product_id) VALUES(2, 1, 4);
 INSERT INTO invoice_items (quatity, invoice_id, product_id) VALUES(1, 1, 5);
 INSERT INTO invoice_items (quatity, invoice_id, product_id) VALUES(1, 1, 7);
 
-INSERT INTO invoices (description, observation, client_id, created_at) VALUES('Factura Bicicleta', 'Alguna nota importante!', 1, NOW());
+INSERT INTO invoices (description, observation, client_id, created_at,user_id) VALUES('Factura Bicicleta', 'Alguna nota importante!', 1, NOW(),1);
 INSERT INTO invoice_items (quatity, invoice_id, product_id) VALUES(3, 2, 6);
 
 INSERT INTO global_config(company_name, company_phone, company_address, company_nit, company_email, invoice_footer) values('xxxxx c.a','334344323','xxxxxxxxxx','d3344f3f4f43','company@gmail.com','the footer')

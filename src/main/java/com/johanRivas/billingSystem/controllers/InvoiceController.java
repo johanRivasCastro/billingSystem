@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -94,6 +95,12 @@ public class InvoiceController {
 
 		for (int i = 0; i < itemId.length; i++) {
 			Product product = productService.getProductById(itemId[i]);
+			int stock = product.getStock();
+
+			if (stock > 0) {
+				product.setStock(stock - quantity[i]);
+			}
+
 			InvoiceItem item = new InvoiceItem();
 			item.setQuatity(quantity[i]);
 			item.setProduct(product);
@@ -104,6 +111,26 @@ public class InvoiceController {
 		flash.addFlashAttribute("success", "Factura creada !");
 		status.setComplete();
 		return "redirect:/invoices";
+	}
+
+	@GetMapping("/invoice/details/{id}")
+	public String details(Model model, @PathVariable("id") Long id, RedirectAttributes flash) {
+
+		if (id == null || id < 1) {
+			flash.addFlashAttribute("error", "El id: " + id + " no es valido");
+			return "redirect:/invoices";
+		}
+
+		Invoice invoice = invoiceService.getInvoiceById(id);
+		if (invoice == null) {
+			flash.addFlashAttribute("error", "No existe ninguna factura con el id: " + id);
+			return "redirect:/invoices";
+		}
+
+		model.addAttribute("invoice", invoice);
+		model.addAttribute("title", "Factura: ".concat(invoice.getDescription()));
+
+		return "invoice/details";
 	}
 
 }

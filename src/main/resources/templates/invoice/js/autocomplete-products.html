@@ -20,7 +20,8 @@
 									value : item.id,
 									label : item.name,
 									price : item.price,
-									iva: item.iva
+									iva: item.iva,
+									stock: item.stock
 								};
 							}));
 						},
@@ -29,10 +30,11 @@
 				select : function(event, ui) {
 					
 					var price = Number(ui.item.price);
-					var itbis = price * (Number(ui.item.iva) / 100);	
+					var itbis = price * (Number(ui.item.iva) / 100);
+					var stock = ui.item.stock;
 					
 					if(itemsHelper.hasProducto(ui.item.value)){
-						itemsHelper.incrementaCantidad(ui.item.value, ui.item.price, itbis);
+						itemsHelper.incrementaCantidad(ui.item.value, ui.item.price, itbis, stock);
 						return false;
 					}
 					
@@ -43,6 +45,7 @@
 					linea = linea.replace(/{NOMBRE}/g, ui.item.label);
 					linea = linea.replace(/{ITBIS}/g,itbis);
 					linea = linea.replace(/{PRECIO}/g, ui.item.price + itbis);
+					linea = linea.replace(/{STOCK}/g, stock)
 					
 					
 					$("#cargarItemProductos tbody").append(linea);
@@ -87,9 +90,15 @@
 		});
 		
 		var itemsHelper = {
-			calcularImporte: function(id, precio, cantidad, itbis){
+			calcularImporte: function(id, precio, cantidad, itbis, stock){
+				if(cantidad > stock){
+					alert("De este producto solo quedan "+ stock+ " disponibles en el inventario");
+					$("#cantidad_" + id).val(cantidad - 1);
+					return;
+				}
 				$("#total_importe_" + id).html(parseInt(precio) * parseInt(cantidad) + (itbis * cantidad));
-				$("#itbis_" + id).html(itbis * cantidad);
+				var itb = itbis * cantidad;
+				$("#itbis_" + id).html(itb.toFixed(2));
 				this.calcularGranTotal();
 			},
 			hasProducto: function(id){
@@ -103,10 +112,10 @@
 				});
 				return resultado;
 			},
-			incrementaCantidad: function(id, precio, itbis){
+			incrementaCantidad: function(id, precio, itbis, stock){
 				var cantidad = $("#cantidad_" + id).val() ? parseInt($("#cantidad_" + id).val()) : 0;
 				$("#cantidad_" + id).val(++cantidad);
-				this.calcularImporte(id, precio, cantidad, itbis);
+				this.calcularImporte(id, precio, cantidad, itbis, stock);
 			},
 			eliminarLineaFactura: function(id){
 				$("#row_" + id).remove();

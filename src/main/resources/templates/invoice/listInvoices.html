@@ -11,49 +11,36 @@
 	<div class="p-5 content justify-content-center">
 		<div th:replace="flashMessages :: flashMessages"></div>
 
-		<table id="invoicesTable" class="table display table-striped">
-			<!-- Header Table -->
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Descripcion</th>
-					<th>Cliente</th>
-					<th>Fecha</th>
-					<th>Vendedor</th>
-					<th>Total</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<!-- Footer Table -->
-			<tfoot>
-				<tr>
-					<th>Id</th>
-					<th>Descripcion</th>
-					<th>Cliente</th>
-					<th>Fecha</th>
-					<th>Vendedor</th>
-					<th>Total</th>
-					<th>Actions</th>
-				</tr>
-			</tfoot>
-		</table>
-		<!--Delete Modal -->
-		<div class="modal fade" id="ModalDeleteProduct" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Esta seguro de
-							que desea eliminar este producto?</h5>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Cerrar</button>
-						<a id="BtnDeleteProduct" href="">
-							<button type="button" class="btn btn-danger">Eliminar</button>
-						</a>
-					</div>
-				</div>
+
+		<div class="card mb-4">
+			<div class="card-header">Administrar Facturas</div>
+			<div class="card-body">
+				<table id="invoicesTable" class="table display table-striped">
+					<!-- Header Table -->
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Descripcion</th>
+							<th>Cliente</th>
+							<th>Fecha</th>
+							<th>Vendedor</th>
+							<th>Total</th>
+							<th>Accion</th>
+						</tr>
+					</thead>
+					<!-- Footer Table -->
+					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>Descripcion</th>
+							<th>Cliente</th>
+							<th>Fecha</th>
+							<th>Vendedor</th>
+							<th>Total</th>
+							<th>Accion</th>
+						</tr>
+					</tfoot>
+				</table>
 			</div>
 		</div>
 	</div>

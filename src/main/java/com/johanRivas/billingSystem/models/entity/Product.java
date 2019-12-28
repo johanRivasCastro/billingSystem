@@ -33,6 +33,8 @@ public class Product implements Serializable {
 	@Column(name = "created_at")
 	private Date createdAt;
 
+	private Boolean enable;
+
 	@PrePersist
 	public void prePersist() {
 		createdAt = new Date();
@@ -84,6 +86,14 @@ public class Product implements Serializable {
 
 	public void setIva(Double iva) {
 		this.iva = iva;
+	}
+
+	public Boolean getEnable() {
+		return enable;
+	}
+
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
 	}
 
 	private static final long serialVersionUID = 1L;

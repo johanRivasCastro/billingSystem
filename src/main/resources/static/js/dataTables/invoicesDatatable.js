@@ -10,9 +10,14 @@ $(document).ready( function () {
 		          { "mData": "client.name" },
 				  { "mData": "createdAt" },
 				  { "mData": "user.username" },
-				  { "mData": "total" },
+				  { "mData": "total",
+					  "render": function (data, type, row) {
+			        		 var total = row.total;
+			        		 return total.toFixed(4);
+				           }  
+				  },
 				  { mRender: function (data, type, row) {
-		                return '<a href="/invoice/details/'+row.id+'"><button class="text-warning"><span><i class="fas fa-info"></i></span></button> </a><button  class="text-danger" id="'+row.id+'"><span><i class="fas fa-file-pdf"></i></span></button>'
+		                return '<a href="/invoice/details/'+row.id+'"><button class="text-warning"><span><i class="fas fa-info"></i></span></button> </a>'
 		              },
 		              className:"center"
 			     }

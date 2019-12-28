@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.johanRivas.billingSystem.helper.InvoiceOperations;
 import com.johanRivas.billingSystem.models.dao.IUserDao;
 import com.johanRivas.billingSystem.models.entity.Client;
 import com.johanRivas.billingSystem.models.entity.Invoice;
@@ -41,6 +42,9 @@ public class InvoiceController {
 
 	@Autowired
 	private IUserDao userDao;
+
+	@Autowired
+	private InvoiceOperations invoiceOperations;
 
 //	private Logger logger = LoggerFactory.getLogger(InvoiceController.class);
 
@@ -104,6 +108,8 @@ public class InvoiceController {
 			InvoiceItem item = new InvoiceItem();
 			item.setQuatity(quantity[i]);
 			item.setProduct(product);
+			item.setItbis((product.getIva()));
+			item.setPrice(product.getPrice());
 			invoice.addInvoiceItem(item);
 		}
 

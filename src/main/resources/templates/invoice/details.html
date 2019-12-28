@@ -54,17 +54,17 @@
 					<tbody>
 						<tr th:each="line: ${invoice.items}">
 							<td th:text="${line.product.name}"></td>
-							<td th:text="${line.quatity * (line.product.price +(line.product.price * (line.product.iva / 100)))}"></td>
+							<td th:text="${line.price}"></td>
 							<td th:text="${line.quatity}"></td>
-							<td th:text="${#numbers.formatDecimal(line.quatity * (line.product.price * (line.product.iva / 100)),0,2)}"></td>
-							<td th:text="${line.calcularImporte()}"></td>
+							<td th:text="${#numbers.formatDecimal(line.quatity * (line.price * (line.itbis / 100)),0,2)}"></td>
+							<td th:text="${#numbers.formatDecimal(line.calcularImporte() ,0,2)}"></td>
 						</tr>
 					</tbody>
 
 				</table>
 
 				<h5 class="float-right">
-					Gran Total <span th:text="${invoice.total}"
+					Gran Total <span th:text="${#numbers.formatDecimal(invoice.total,0,4)}"
 						class="badge badge-secondary"></span>
 				</h5>
 

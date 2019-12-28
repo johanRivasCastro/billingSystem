@@ -1,6 +1,7 @@
 package com.johanRivas.billingSystem.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "users")
 public class User implements Serializable {
 
+	public User() {
+		roles = new ArrayList<Role>();
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,11 +39,11 @@ public class User implements Serializable {
 
 	private boolean enable;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "user_id")
-	private List<Role> Roles;
+	private List<Role> roles;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user")
 	@JsonBackReference
 	private List<Invoice> invoices;
 
@@ -75,21 +80,25 @@ public class User implements Serializable {
 	}
 
 	public List<Role> getRoles() {
-		return Roles;
+		return roles;
 	}
 
 	public void setRoles(List<Role> roles) {
-		Roles = roles;
+		this.roles = roles;
 	}
 
-//	public List<Invoice> getInvoices() {
-//		return invoices;
-//	}
-//
-//	public void addInvoice(Invoice Bill) {
-//		invoices.add(Bill);
-//	}
-//
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
+
+	public List<Invoice> getInvoices() {
+		return invoices;
+	}
+
+	public void addInvoice(Invoice invoice) {
+		this.invoices.add(invoice);
+	}
+
 //	public void setInvoices(List<Invoice> invoices) {
 //		this.invoices = invoices;
 //	}

@@ -24,6 +24,10 @@ public class InvoiceItem implements Serializable {
 	@JoinColumn(name = "product_id")
 	private Product product;
 
+	private Double itbis;
+
+	private Double price;
+
 	public Long getId() {
 		return id;
 	}
@@ -49,7 +53,26 @@ public class InvoiceItem implements Serializable {
 	}
 
 	public Double calcularImporte() {
-		return quatity.doubleValue() * product.getPrice();
+		if (getItbis() != null) {
+			return quatity.doubleValue() * ((price * (getItbis() / 100.0)) + price);
+		}
+		return 0.0;
+	}
+
+	public Double getItbis() {
+		return itbis;
+	}
+
+	public void setItbis(Double itbis) {
+		this.itbis = itbis;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	private static final long serialVersionUID = 1L;

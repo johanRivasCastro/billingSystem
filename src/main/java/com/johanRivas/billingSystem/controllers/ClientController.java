@@ -38,21 +38,21 @@ public class ClientController {
 	public String addClient(@Valid Client client, BindingResult result, SessionStatus status,
 			RedirectAttributes flash) {
 		if (result.hasErrors()) {
-			flash.addFlashAttribute("error",
-					"Error. El producto: ".concat(client.getName().concat(" no puede ser creado")));
+//			flash.addFlashAttribute("error", "Error. El client: ".concat(client.getName().concat(" no es valido")));
+			flash.addFlashAttribute("error", result.getFieldError());
 			return "redirect:/clients";
 		}
 		try {
 			status.setComplete();
-			String message = (client.getId() != null) ? "Cliente agregado" : "Cliente editado con exito";
+			String message = (client.getId() == null) ? "Cliente agregado" : "Cliente editado con exito";
 			clientService.addClient(client);
-			flash.addAttribute("succes", message);
+			flash.addFlashAttribute("success", message);
 		} catch (Exception e) {
 			logger.info("Error al crear / editar el cliente: ".concat(e.getMessage()));
 		}
 		return "redirect:/clients";
 	}
-
+                                                                          
 	@GetMapping("/deleteClient/{id}")
 	public String deleteClient(@PathVariable("id") Long id, RedirectAttributes flash) {
 		if (id > 0) {

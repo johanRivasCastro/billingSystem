@@ -13,7 +13,7 @@ $(document).ready( function () {
 				  { "mData": "identification" },
 				  { "mData": "phone" },
 				  { mRender: function (data, type, row) {
-		                return '<button  class="text-warning" id="'+row.id+'"><span><i class="fas fa-pen"></i></span></button> <button  class="text-danger" id="'+row.id+'"><span><i class="fas fa-trash"></i></span></button>'
+		                return '<button  class="text-warning" id="'+row.id+'"><span><i class="fas fa-pen"></i></span></button>'
 		              },
 		              className:"center"
 			     }
@@ -26,11 +26,11 @@ $(document).ready( function () {
 	        var actionClass = this.className;
 	        
 	        
-	        if(actionClass == "text-danger") {
-	        var url = '/deleteClient/'+actionId;
-	        $('#BtnDeleteClient').attr("href",url);
-	        $("#ModalDeleteClient").modal();
-	        }else{
+//	        if(actionClass == "text-danger") {
+//	        var url = '/deleteClient/'+actionId;
+//	        $('#BtnDeleteClient').attr("href",url);
+//	        $("#ModalDeleteClient").modal();
+//	        }else{
 	        	$.get("/rest/client/"+actionId, function(client,status){
 	        		$('#client-id').val(client.id)
 	        		$('#edit-clientName').val(client.name)
@@ -42,7 +42,7 @@ $(document).ready( function () {
 	        		 $("#ModalEditClient").modal();
 	        	});
 	        	
-	        }
+//	        }
 	    } );
 	
 });

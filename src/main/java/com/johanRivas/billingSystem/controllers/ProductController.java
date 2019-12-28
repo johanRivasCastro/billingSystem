@@ -9,11 +9,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,7 +36,7 @@ public class ProductController {
 
 	@PostMapping(value = "/addProduct")
 	public String addProduct(@Valid Product product, BindingResult result, SessionStatus status,
-			RedirectAttributes flash) {
+			RedirectAttributes flash, @RequestParam(name = "productStatus", required = false) String productStatus) {
 		if (result.hasErrors()) {
 			flash.addFlashAttribute("error", "El roducto: '" + product.getName() + "' no pudo ser creado");
 			return "redirect:/products";
@@ -46,6 +45,17 @@ public class ProductController {
 			status.setComplete();
 			String flashMessage = (product.getId() != null) ? "Product editado con exito"
 					: "Producto agregado con exito ";
+
+			if (product.getId() != null && productStatus != null) {
+				product.setEnable(true);
+			} else if (product.getId() != null && productStatus == null) {
+				product.setEnable(false);
+			}
+
+			if (product.getId() == null) {
+				product.setEnable(true);
+			}
+
 			productService.addProduct(product);
 			flash.addFlashAttribute("success", flashMessage);
 
@@ -55,12 +65,12 @@ public class ProductController {
 		return "redirect:/products";
 	}
 
-	@GetMapping(value = "/deleteProduct/{id}")
-	public String deleteProduct(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
-		if (id > 0) {
-			productService.deleteProduct(id);
-			flash.addFlashAttribute("success", "Producto eliminado exitosamente");
-		}
-		return "redirect:/products";
-	}
+//	@GetMapping(value = "/deleteProduct/{id}")
+//	public String deleteProduct(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
+//		if (id > 0) {
+//			productService.deleteProduct(id);
+//			flash.addFlashAttribute("success", "Producto eliminado exitosamente");
+//		}
+//		return "redirect:/products";
+//	}
 }
